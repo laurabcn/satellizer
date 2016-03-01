@@ -35,5 +35,8 @@
   },
   "scripts": {
     "test": "karma start test\\karma.conf.js"
+  },
+  "dependencies": {
+    "grunt-open": "^0.2.3"
   }
 }

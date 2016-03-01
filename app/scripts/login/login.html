@@ -1,0 +1,30 @@
+<p>This is the login view.</p>
+
+
+<button ng-click="login.authenticate('facebook')">
+  Connect Facebook Account
+</button>
+<button ng-click="login.authenticate('twitter')">
+  Connect Twitter Account
+</button>
+<button ng-click="login.authenticate('google')">
+  Connect Google Account
+</button>
+<button ng-click="login.authenticate('live')">
+  Connect Microsoft Account
+</button>
+
+<form name="loginForm" ng-controller="LoginCtrl" class="form-control">
+  <label>User name</label> <input name="name" ng-model="userType.name" required>
+  <span class="has-error" ng-show="loginForm.name.$error.required">Required!</span>
+  <label>Password</label> <input name="password" ng-model="userType.password" required>
+  <span class="has-error" ng-show="loginForm.password.$error.required">Required!</span>
+
+</form>
+<ul ng-if="!login.isAuthenticated()">
+  <li><a href="/login">Login</a></li>
+  <li><a href="/signup">Sign up</a></li>
+</ul>
+<ul ng-if="isAuthenticated()">
+  <li><a href="/logout">Logout</a></li>
+</ul>
