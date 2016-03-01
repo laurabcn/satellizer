@@ -1,0 +1,6 @@
+{
+	"directory": "bower_components",
+	"proxy": "http://10.142.74.132:82",
+	"https-proxy": "http://10.142.74.132:82",
+    "strict-ssl": false 
+}
