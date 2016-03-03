@@ -35,24 +35,34 @@ angular
         controller: 'LoginCtrl',
         controllerAs: 'login'
       })
-      .when('/signup', {
-        controller: 'SignupCtrl',
-        controllerAs: 'signup'
-      })
       .when('/logout', {
         controller: 'LogoutCtrl',
         controllerAs: 'logout'
+      })
+      .when("/signup", {
+        templateUrl: "scripts/login/signup.html",
+        controller: "SignUpController",
+        controllerAs: "signup"
       })
       .otherwise({
         redirectTo: '/'
       });
   })
   .config(function($authProvider) {
+    $authProvider.loginUrl = "http://localhost:9000/#/login";
+    $authProvider.signupUrl = "http://localhost:9000/#/signup";
+    $authProvider.tokenName = "token";
+    $authProvider.tokenPrefix = "myApp";
 
     $authProvider.facebook({
-      clientId: '223985831285204',
+      clientId: '846834785440087',
       authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
+      url: 'http://localhost:9000/#/login',
+      scope: ['email'],
+      display: 'popup',
+      type: '2.0',
       redirectUri: window.location.origin + '/',
+      requiredUrlParams: ['display', 'scope'],
       popupOptions: { width: 580, height: 400 }
     });
 
@@ -60,35 +70,9 @@ angular
       clientId: 'Google Client ID'
     });
 
-    $authProvider.github({
-      clientId: 'GitHub Client ID'
-    });
-
-    $authProvider.linkedin({
-      clientId: 'LinkedIn Client ID'
-    });
-
-    $authProvider.instagram({
-      clientId: 'Instagram Client ID'
-    });
-
-    $authProvider.yahoo({
-      clientId: 'Yahoo Client ID / Consumer Key'
-    });
-
     $authProvider.live({
       clientId: '000000004C18335A'
     });
-
-    $authProvider.twitch({
-      clientId: 'Twitch Client ID'
-    });
-
-    $authProvider.bitbucket({
-      clientId: 'Bitbucket Client ID'
-    });
-
-    // No additional setup required for Twitter
 
     // Twitter
     $authProvider.twitter({
@@ -97,13 +81,22 @@ angular
       type: '1.0',
       popupOptions: { width: 495, height: 645 }
     });
-
-    $authProvider.oauth2({
-      name: 'Login',
-      url: '/#/login',
-      clientId: 'Foursquare Client ID',
-      redirectUri: window.location.origin,
-      authorizationEndpoint: 'https://foursquare.com/oauth2/authenticate',
-    });
-
-  });
+  })
+  /*.config(['$httpProvider', 'satellizer.config', function($httpProvider, config) {
+    $httpProvider.interceptors.push(['$q', function($q) {
+      var tokenName = config.tokenPrefix ? config.tokenPrefix + '_' + config.tokenName : config.tokenName;
+      return {
+        request: function(httpConfig) {
+          var token = localStorage.getItem(tokenName);
+          if (token && config.httpInterceptor) {
+            token = config.authHeader === 'Authorization' ? 'Bearer ' + token : token;
+            httpConfig.headers[config.authHeader] = token;
+          }
+          return httpConfig;
+        },
+        responseError: function(response) {
+          return $q.reject(response);
+        }
+      };
+    }]);
+  }])*/;
