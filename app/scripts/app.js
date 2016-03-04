@@ -18,7 +18,7 @@ angular
     'ngTouch',
     'satellizer'
   ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $authProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'scripts/main/main.html',
@@ -46,9 +46,6 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-  })
-  .config(function($authProvider) {
-
     $authProvider.facebook({
       clientId: '223985831285204',
       authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
@@ -56,36 +53,8 @@ angular
       popupOptions: { width: 580, height: 400 }
     });
 
-    $authProvider.google({
-      clientId: 'Google Client ID'
-    });
-
-    $authProvider.github({
-      clientId: 'GitHub Client ID'
-    });
-
-    $authProvider.linkedin({
-      clientId: 'LinkedIn Client ID'
-    });
-
-    $authProvider.instagram({
-      clientId: 'Instagram Client ID'
-    });
-
-    $authProvider.yahoo({
-      clientId: 'Yahoo Client ID / Consumer Key'
-    });
-
     $authProvider.live({
       clientId: '000000004C18335A'
-    });
-
-    $authProvider.twitch({
-      clientId: 'Twitch Client ID'
-    });
-
-    $authProvider.bitbucket({
-      clientId: 'Bitbucket Client ID'
     });
 
     // No additional setup required for Twitter

@@ -14,11 +14,12 @@
   Connect Microsoft Account
 </button>
 
-<form name="loginForm" ng-controller="LoginCtrl" class="form-control">
-  <label>User name</label> <input name="name" ng-model="userType.name" required>
+<form name="loginForm" ng-controller="LoginCtrl" class="form-control" ng-submit="login.login()">
+  <label>User name</label> <input name="name" ng-model="login.name" required>
   <span class="has-error" ng-show="loginForm.name.$error.required">Required!</span>
-  <label>Password</label> <input name="password" ng-model="userType.password" required>
+  <label>Password</label> <input name="password" ng-model="login.password" required>
   <span class="has-error" ng-show="loginForm.password.$error.required">Required!</span>
+  <button class="btn btn-primary btn-default" type="submit"> Autenticarse</button>
 
 </form>
 <ul ng-if="!login.isAuthenticated()">

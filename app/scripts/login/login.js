@@ -1,4 +1,4 @@
-
+(function(){
   'use strict';
 
 
@@ -11,14 +11,23 @@
    */
   angular
     .module('satellizerApp')
-    .controller('LoginCtrl',  function ($scope, $auth) {
-    var vm = this;
+    .controller('LoginCtrl',  LoginCtrl);
+
+  LoginCtrl.$inject = ['$scope', '$auth', '$location'];
+
+  function LoginCtrl($scope, $auth, $location) {
+      var vm = this;
+
+      vm.login = function(){
+
+      };
+
     /*var user = {
       email: vm.email,
       password: vm.password
     };*/
 
-    vm.authenticate = function(provider) {
+    /*vm.authenticate = function(provider) {
       $auth.setStorageType('sessionStorage');
       console.log($auth);
       $auth.authenticate(provider);
@@ -51,6 +60,8 @@
       .catch(function(response) {
         console.log(response);
       });
+*/
+  };
 
-  });
+})();
 
