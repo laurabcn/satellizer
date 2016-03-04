@@ -18,7 +18,7 @@ angular
     'ngTouch',
     'satellizer'
   ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $authProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'scripts/main/main.html',
@@ -47,6 +47,7 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+<<<<<<< HEAD
   })
   .config(function($authProvider) {
     $authProvider.loginUrl = "http://localhost:9000/#/login";
@@ -54,6 +55,8 @@ angular
     $authProvider.tokenName = "token";
     $authProvider.tokenPrefix = "myApp";
 
+=======
+>>>>>>> d6d8abd949b435db66caeac9bed2ce02a36d62f0
     $authProvider.facebook({
       clientId: '846834785440087',
       authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
@@ -66,14 +69,22 @@ angular
       popupOptions: { width: 580, height: 400 }
     });
 
+<<<<<<< HEAD
     $authProvider.google({
       clientId: 'Google Client ID'
     });
 
+=======
+>>>>>>> d6d8abd949b435db66caeac9bed2ce02a36d62f0
     $authProvider.live({
       clientId: '000000004C18335A'
     });
 
+<<<<<<< HEAD
+=======
+    // No additional setup required for Twitter
+
+>>>>>>> d6d8abd949b435db66caeac9bed2ce02a36d62f0
     // Twitter
     $authProvider.twitter({
       authorizationEndpoint: 'https://api.twitter.com/oauth/authenticate',

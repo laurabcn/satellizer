@@ -1,4 +1,4 @@
-// Generated on 2016-03-01 using generator-angular 0.15.1
+// Generated on 2016-02-28 using generator-angular 0.15.1
 'use strict';
 
 // # Globbing
@@ -45,7 +45,7 @@ module.exports = function (grunt) {
         tasks: ['wiredep', 'added', 'deleted']
       },
       js: {
-        files: ['<%= yeoman.app %>/scripts/{,*/}.js','<%= yeoman.app %>/scripts/{,*/}.js'],
+        files: ['<%= yeoman.app %>/scripts/**/*.js'],
         tasks: ['newer:jshint:all', 'newer:jscs:all'],
         options: {
           livereload: '<%= connect.options.livereload %>'
@@ -98,12 +98,12 @@ module.exports = function (grunt) {
             return [
               connect.static('.tmp'),
               connect().use(
-                '/bower_components',
-                connect.static('./bower_components')
+                  '/bower_components',
+                  connect.static('./bower_components')
               ),
               connect().use(
-                '/app/styles',
-                connect.static('./app/styles')
+                  '/app/styles',
+                  connect.static('./app/styles')
               ),
               connect.static(appConfig.app)
             ];
@@ -118,8 +118,8 @@ module.exports = function (grunt) {
               connect.static('.tmp'),
               connect.static('test'),
               connect().use(
-                '/bower_components',
-                connect.static('./bower_components')
+                  '/bower_components',
+                  connect.static('./bower_components')
               ),
               connect.static(appConfig.app)
             ];
@@ -143,7 +143,7 @@ module.exports = function (grunt) {
       all: {
         src: [
           'Gruntfile.js',
-          '<%= yeoman.app %>/scripts/{,*/}*.js'
+          '<%= yeoman.app %>/scripts/**/*.js'
         ]
       },
       test: {
@@ -163,7 +163,7 @@ module.exports = function (grunt) {
       all: {
         src: [
           'Gruntfile.js',
-          '<%= yeoman.app %>/scripts/{,*/}*.js'
+          '<%= yeoman.app %>/scripts/**/*.js'
         ]
       },
       test: {
@@ -227,14 +227,14 @@ module.exports = function (grunt) {
         fileTypes:{
           js: {
             block: /(([\s\t]*)\/{2}\s*?bower:\s*?(\S*))(\n|\r|.)*?(\/{2}\s*endbower)/gi,
-              detect: {
-                js: /'(.*\.js)'/gi
-              },
-              replace: {
-                js: '\'{{filePath}}\','
-              }
+            detect: {
+              js: /'(.*\.js)'/gi
+            },
+            replace: {
+              js: '\'{{filePath}}\','
             }
           }
+        }
       },
       sass: {
         src: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
@@ -275,7 +275,11 @@ module.exports = function (grunt) {
     filerev: {
       dist: {
         src: [
+<<<<<<< HEAD
           '<%= yeoman.dist %>/scripts/{,*/}*.js',
+=======
+          '<%= yeoman.dist %>/scripts/*.js',
+>>>>>>> d6d8abd949b435db66caeac9bed2ce02a36d62f0
           '<%= yeoman.dist %>/scripts/**/*.js',
           '<%= yeoman.dist %>/styles/{,*/}*.css',
           '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
@@ -307,7 +311,7 @@ module.exports = function (grunt) {
     usemin: {
       html: ['<%= yeoman.dist %>/{,*/}*.html'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
-      js: ['<%= yeoman.dist %>/scripts/{,*/}*.js'],
+      js: ['<%= yeoman.dist %>/scripts/**/*.js'],
       options: {
         assetsDirs: [
           '<%= yeoman.dist %>',
@@ -388,7 +392,7 @@ module.exports = function (grunt) {
     ngtemplates: {
       dist: {
         options: {
-          module: 'satellizerApp',
+          module: 'adminApp',
           htmlmin: '<%= htmlmin.dist.options %>',
           usemin: 'scripts/scripts.js'
         },
