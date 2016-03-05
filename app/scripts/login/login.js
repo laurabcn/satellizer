@@ -1,4 +1,4 @@
-(function(){
+(function() {
   'use strict';
 
 
@@ -11,57 +11,64 @@
    */
   angular
     .module('satellizerApp')
-    .controller('LoginCtrl',  LoginCtrl);
+    .controller('LoginCtrl', LoginCtrl);
 
-  LoginCtrl.$inject = ['$scope', '$auth', '$location'];
+  LoginCtrl.$inject = ['$scope', '$auth', '$location', '$log'];
+  function LoginCtrl($scope, $auth, $location, $log) {
+    var vm = this;
 
-  function LoginCtrl($scope, $auth, $location) {
-      var vm = this;
 
-      vm.login = function(){
-
-      };
-
-    /*var user = {
-      email: vm.email,
-      password: vm.password
-    };*/
-
-    /*vm.authenticate = function(provider) {
+    vm.login = function () {
+      $log.log(vm);
+      $auth.login({
+          email: vm.name,
+          password: vm.password
+        })
+        .then(function () {
+          $location.path("http://localhost:9000/#/about");
+          $log.log("ENTROOOO");
+        })
+        .catch(function(response){
+          $log.log(response);
+        });
+    };
+    vm.authenticate = function (provider) {
       $auth.setStorageType('sessionStorage');
-      console.log($auth);
-      $auth.authenticate(provider);
-      $auth.login();
+      switch (provider) {
+        case 'google':
+          $auth.authenticate('google')
+            .then(function (response) {
+
+            })
+            .catch(function (response) {
+
+            });
+          break;
+        case 'twitter':
+          $auth.authenticate('twitter')
+            .then(function (response) {
+
+            })
+            .catch(function (response) {
+
+            });
+          break;
+
+        case 'facebook':
+          $auth.authenticate('facebook')
+            .then(function (response) {
+              $log.log("THENNNN");
+            })
+            .catch(function (response) {
+              $log.log("ERROR");
+            });
+          break;
+
+      }
+
+
     };
 
-    $auth.authenticate('google')
-      .then(function(response) {
-         console.log(response);
-        console.log('google');
-      })
-      .catch(function(response) {
-        console.log(response);
-      });
-
-    $auth.authenticate('twitter')
-      .then(function(response) {
-        console.log(response);
-        console.log('twitter');
-      })
-      .catch(function(response) {
-        console.log(response);
-      });
-
-    $auth.authenticate('facebook')
-      .then(function(response) {
-        console.log('facebook');
-        console.log(response);
-      })
-      .catch(function(response) {
-        console.log(response);
-      });
-*/
-  };
-
+  }
 })();
 

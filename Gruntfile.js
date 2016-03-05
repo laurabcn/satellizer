@@ -27,7 +27,14 @@ module.exports = function (grunt) {
 
   // Define the configuration for all the tasks
   grunt.initConfig({
-
+    app: {
+      // Application variables
+      scripts: [
+        // JS files to be included by includeSource task into index.html
+        'scripts/app.js',
+        'scripts/**/*.js'
+      ]
+    },
     // Project settings
     yeoman: appConfig,
 
@@ -35,7 +42,7 @@ module.exports = function (grunt) {
     watch: {
       bower: {
         files: ['bower.json'],
-        tasks: ['wiredep']
+        tasks: ['wiredep', 'added', 'deleted']
       },
       js: {
         files: ['<%= yeoman.app %>/scripts/**/*.js'],
@@ -61,9 +68,18 @@ module.exports = function (grunt) {
         },
         files: [
           '<%= yeoman.app %>/{,*/}*.html',
+          '<%= yeoman.app %>/scripts/../*.html',
           '.tmp/styles/{,*/}*.css',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
+      },
+      includeSource: {
+        // Watch for added and deleted scripts to update index.html
+        files: 'app/scripts/**/*.js',
+        tasks: ['includeSource'],
+        options: {
+          event: ['added', 'deleted']
+        }
       }
     },
 
@@ -259,7 +275,11 @@ module.exports = function (grunt) {
     filerev: {
       dist: {
         src: [
+<<<<<<< HEAD
+          '<%= yeoman.dist %>/scripts/{,*/}*.js',
+=======
           '<%= yeoman.dist %>/scripts/*.js',
+>>>>>>> d6d8abd949b435db66caeac9bed2ce02a36d62f0
           '<%= yeoman.dist %>/scripts/**/*.js',
           '<%= yeoman.dist %>/styles/{,*/}*.css',
           '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',

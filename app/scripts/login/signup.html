@@ -14,7 +14,6 @@
   Connect Microsoft Account
 </button>
 
-<<<<<<< HEAD
 <div
   class="fb-like"
   data-share="true"
@@ -22,20 +21,11 @@
   data-show-faces="true">
 </div>
 
-<form name="loginForm" ng-submit="login.login()" class="form-control">
-  <label>User name</label> <input type="text" name="name" ng-model="login.user.name" required>
+<form name="loginForm" ng-controller="LoginCtrl" class="form-control">
+  <label>User name</label> <input name="name" ng-model="userType.name" required>
   <span class="has-error" ng-show="loginForm.name.$error.required">Required!</span>
-  <label>Password</label> <input type="text" name="password" ng-model="login.user.password" required>
+  <label>Password</label> <input name="password" ng-model="userType.password" required>
   <span class="has-error" ng-show="loginForm.password.$error.required">Required!</span>
-  <button type="submit">Registrarse</button>
-=======
-<form name="loginForm" ng-controller="LoginCtrl" class="form-control" ng-submit="login.login()">
-  <label>User name</label> <input name="name" ng-model="login.name" required>
-  <span class="has-error" ng-show="loginForm.name.$error.required">Required!</span>
-  <label>Password</label> <input name="password" ng-model="login.password" required>
-  <span class="has-error" ng-show="loginForm.password.$error.required">Required!</span>
-  <button class="btn btn-primary btn-default" type="submit"> Autenticarse</button>
->>>>>>> d6d8abd949b435db66caeac9bed2ce02a36d62f0
 
 </form>
 <ul ng-if="!login.isAuthenticated()">
