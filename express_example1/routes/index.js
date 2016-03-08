@@ -29,20 +29,7 @@ router.get('/', function(req, res) {
 
 app.use(router);
 
-var tvshows = express.Router();
-
-
-tvshows.route('/tvshows')
-    .get(TVShowCtrl.findAllTVShows)
-    .post(TVShowCtrl.addTVShow);
-
-tvshows.route('/tvshows/:id')
-    .get(TVShowCtrl.findById)
-    .put(TVShowCtrl.updateTVShow)
-    .delete(TVShowCtrl.deleteTVShow);
-
-app.use('/api', tvshows);
-
-
-
-
+app.listen(2000, function(){
+  console.log("Node server running on http://localhost:2000");
+});
+module.exports = router;
