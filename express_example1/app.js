@@ -10,6 +10,9 @@ var express = require('express'),
 var routes = require('./routes/index'),
     users = require('./routes/users');
 
+var models     = require('./models/tvshow')(app, mongoose);
+var TVShowCtrl = require('./controllers/tvshows');
+
 var app = express();
 
 // view engine setup
@@ -26,9 +29,6 @@ app.use(methodOverride());
 app.use(cookieParser());
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', routes);
-app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
