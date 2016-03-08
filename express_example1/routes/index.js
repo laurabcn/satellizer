@@ -16,8 +16,8 @@ app.use(bodyParser.urlencoded({extended: false }));
 app.use(bodyParser.json());
 app.use(methodOverride());
 
-var models = require('./models/tvshow');
-var TVShowCtrl = require('./controllers/tvshows')
+var models = require('../../express_example1/models/tvshow');
+var TVShowCtrl = require('../../express_example1/controllers/tvshows');
 
 var router = express.Router();
 
