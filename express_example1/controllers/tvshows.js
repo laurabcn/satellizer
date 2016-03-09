@@ -36,7 +36,7 @@ exports.addTVShow = function(req, res){
         genre: req.body.genre,
         summary: req.body.summary
     });
-    tvshow.save(function(err, tvshow){
+    tvshow.save(function(err){
         if(err) return res.status(500).send( err.message);
         res.status(200).jsonp(tvshow);
     });
