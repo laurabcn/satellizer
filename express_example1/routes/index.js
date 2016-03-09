@@ -2,10 +2,10 @@ var express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
-    mongoose = require('mongoose'),
-    http = require('http'),
-    server = http.createServer(app);
+    mongoose = require('mongoose');
 
+var models = require('../../express_example1/models/tvshow');
+//var TVShowCtrl = require('../../express_example1/controllers/tvshows');
 
 mongoose.connect('mongodb://localhost/tvshows', function(err, res) {
   if(err) throw err;
@@ -16,8 +16,7 @@ app.use(bodyParser.urlencoded({extended: false }));
 app.use(bodyParser.json());
 app.use(methodOverride());
 
-var models = require('../../express_example1/models/tvshow');
-var TVShowCtrl = require('../../express_example1/controllers/tvshows');
+
 
 var router = express.Router();
 

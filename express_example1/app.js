@@ -5,15 +5,12 @@ var express = require('express'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
-    methodOverride = require('method-override');
+    methodOverride = require('method-override'),
+    app = express();
 
 var routes = require('./routes/index'),
     users = require('./routes/users');
 
-var models     = require('./models/tvshow')(app, mongoose);
-var TVShowCtrl = require('./controllers/tvshows');
-
-var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

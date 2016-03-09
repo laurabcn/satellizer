@@ -37,6 +37,7 @@
     "test": "karma start test\\karma.conf.js"
   },
   "dependencies": {
-    "grunt-open": "^0.2.3"
+    "grunt-open": "^0.2.3",
+    "mongodb": "^2.1.7"
   }
 }
