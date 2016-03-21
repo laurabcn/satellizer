@@ -14,18 +14,14 @@ app.use(bodyParser.urlencoded({extended: false }));
 app.use(bodyParser.json());
 app.use(methodOverride());
 
-var models = require('../../express_example1/models/tvshow')(app, mongoose);
-var TVShowCtrl = require('../../express_example1/controllers/tvshows');
+var User = require('../models/users');
+var models = require('../models/tvshow')(app, mongoose);
+var TVShowCtrl = require('../controllers/tvshows');
+
 var router = express.Router();
 
-/* GET home page. */
-/*
-router.get('/', function(req, res) {
-  //res.render('index', { title: 'Express' });
-  res.send("Hello sabandija!!!");
-});
-app.use(router);
-*/
+app.use(express.static('public'));
+
 // API routes
 var uola = express.Router();
 
@@ -37,7 +33,6 @@ uola.route('/tvshows/:id')
   .get(TVShowCtrl.findById)
   .put(TVShowCtrl.updateTVShow)
   .delete(TVShowCtrl.deleteTVShow);
-
 app.use('/api', uola);
 
 app.listen(2000, function(){

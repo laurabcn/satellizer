@@ -1,12 +1,13 @@
-var mongoose = require('mongoose');
-var TVShow = mongoose.model('TVShow');
+var mongoose = require('mongoose'),
+    TVShow = mongoose.model('TVShow'),
+    path = require('path');
+
 
 exports.findAllTVShows = function(req, res){
     TVShow.find(function(err, tvshows){
         if(err) res.send(500, err.message);
-
         console.log('GET /tvshows');
-            res.status(200).jsonp(tvshows);
+        res.render('index.jade', {pageTitle: 'Lista de Series', series: tvshows});
     })
 };
 
@@ -14,9 +15,11 @@ exports.findAllTVShows = function(req, res){
 
 exports.findById = function(req, res){
     TVShow.findById(req.params.id, function(err, tvshow){
-        if(err) return res.send(500, err.message);
+        //if(err) return res.send(500, err.message);
+        if(!req.params.id)  throw swagger.errors.invalid('id');
         console.log('GET /tvshow' + req.params.id);
-        res.status(200).jsonp(tvshow);
+        //res.status(200).jsonp(tvshow);
+        res.send(JSON.stringify(tvshow));
 
     });
 };
@@ -24,9 +27,7 @@ exports.findById = function(req, res){
 //POST - Insert a new TVShow in the DB
 
 exports.addTVShow = function(req, res){
-    console.log('POST');
-    console.log(req.body);
-
+    console.log('POST /tvshow');
     var tvshow = new TVShow({
         title : req.body.title,
         year: req.body.year,
@@ -37,8 +38,10 @@ exports.addTVShow = function(req, res){
         summary: req.body.summary
     });
     tvshow.save(function(err){
-        if(err) return res.status(500).send( err.message);
-        res.status(200).jsonp(tvshow);
+        /*if(err) return res.status(500).send( err.message);
+        res.status(200).jsonp(tvshow);*/
+        if(!req.params)  throw swagger.errors.invalid('save');
+        res.send(JSON.stringify(tvshow));
     });
 };
 
@@ -55,8 +58,10 @@ exports.updateTVShow = function(req, res){
         tvshow.summary = req.body.summary;
 
         tvshow.save(function(err){
-            if(err) return res.status(500).send(err.message);
-            res.status(200).jsonp(tvshow);
+            /*if(err) return res.status(500).send(err.message);
+            res.status(200).jsonp(tvshow);*/
+            if(!req.params)  throw swagger.errors.invalid('save');
+            res.send(JSON.stringify(tvshow));
         });
     });
 };
@@ -66,8 +71,10 @@ exports.updateTVShow = function(req, res){
 exports.deleteTVShow = function(req, res){
     TVShow.findById(req.params.id, function(err, tvshow){
         tvshow.remove(function(err){
-            if(err) return res.status(500).send(err.message);
-            res.status(200).send();
+            /*if(err) return res.status(500).send(err.message);
+            res.status(200).send();*/
+            if(!req.params)  throw swagger.errors.invalid('save');
+            res.send(JSON.stringify(tvshow));
         })
     })
 };
